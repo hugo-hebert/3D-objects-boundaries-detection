@@ -5,6 +5,11 @@
 
 #include "clustering.h"
 
+//Initializing our variables as empty
+std::map<float, pcl::PointCloud<pcl::PointXYZRGB> ::Ptr> clustering::color_map;
+std::vector<pcl::PointXYZRGB> clustering::point_cloud_vct;
+std::vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr> clustering::point_clouds;
+
 clustering::clustering()
 {
 
@@ -58,7 +63,7 @@ void clustering::createNewCloud(pcl::PointXYZRGB my_crt_point, float point_color
 //Using a new cloud, we insert the neighbours of our current point and of the same color in it
 void clustering::addingOfNeighbours(pcl::PointXYZRGB my_crt_point, pcl::PointCloud<pcl::PointXYZRGB> ::Ptr new_cloud)
 {
-    //TO-DO
+    std::vector<pcl::PointXYZRGB>::iterator it;
 }
 
 void clustering::sortPointsByColor()

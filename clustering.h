@@ -14,6 +14,7 @@ class clustering
 {
 public:
     clustering();
+    static void initializeClustering();
     static void cloudColorSegmentation(pcl::PointCloud<pcl::PointXYZRGB> ::Ptr my_cloud);
     static void sortPointsByColor();
     static void addPointXYZRGBoVector(pcl::PointXYZRGB my_crt_point);
