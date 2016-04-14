@@ -20,8 +20,7 @@ void clustering::cloudColorSegmentation(pcl::PointCloud<pcl::PointXYZRGB> ::Ptr 
     while(point_cloud_vct.size() != 0)
     {
         //Get a random point in the cloud and its color
-        my_crt_point = getRNDPoint(my_cloud);
-        Eigen::Vector3i point_color = my_crt_point.getRGBVector3i();
+        float point_color = my_crt_point.rgb;
 
         //If our map already contains a key for this color, then there's a chance the point has already been sorted
         if(color_map.find(point_color) != color_map.end())
@@ -44,7 +43,7 @@ void clustering::cloudColorSegmentation(pcl::PointCloud<pcl::PointXYZRGB> ::Ptr 
     }
 }
 
-void clustering::createNewCloud(pcl::PointXYZRGB my_crt_point, Eigen::Vector3i point_color)
+void clustering::createNewCloud(pcl::PointXYZRGB my_crt_point, float point_color)
 {
     //The point hasn't been sorted so it must be in another segment of the main cloud
     //We will create a new cloud for this point and its neighbours
@@ -86,5 +85,7 @@ bool clustering::checkIfPointAlreadySorted(pcl::PointXYZRGB my_crt_point, pcl::P
 
 pcl::PointXYZRGB clustering::getRNDPoint(pcl::PointCloud<pcl::PointXYZRGB> ::Ptr my_cloud)
 {
-    //TO-DO
+     pcl::PointCloud<pcl::PointXYZRGB>::iterator it = my_cloud->begin();
+     std::advance(it, rand() % my_cloud->size() + 1);
+     return *it;
 }
